@@ -6,7 +6,7 @@ const sassPath = './blocks/';
 const distPath = './dist/';
 
 gulp.task('sass', () => {
-  return gulp.src(sassPath + 'style.scss')
+  return gulp.src(sassPath + '*.scss')
     .pipe(sass({
       outputStyle: 'compressed'
     }).on('error', sass.logError))
@@ -17,3 +17,6 @@ gulp.task('sass', () => {
 gulp.task('sass:watch', ['sass'], () => {
   gulp.watch(sassPath + '*.scss', ['sass']);
 });
+
+
+gulp.task('build', ['webpack', 'sass']);
