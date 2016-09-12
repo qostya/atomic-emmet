@@ -1,0 +1,16 @@
+{
+  "name": "atomic-emmet",
+  "version": "0.0.1",
+  "description": "Emmet-style Atomic-CSS library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "to@kostya.im",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
