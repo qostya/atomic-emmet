@@ -1,0 +1,11 @@
+@for $i from 1 through 20 {
+  .w#{5 * $i}p {
+    width: 5% * $i !important;
+  }
+}
+
+@for $i from 1 through 2 {
+  .w#{33 * $i}p {
+    width: 33.33% * $i !important;
+  }
+}
