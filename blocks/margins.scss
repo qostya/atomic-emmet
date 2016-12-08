@@ -2,6 +2,10 @@
   margin: 0 !important;
 }
 
+.m0a {
+  margin: 0 auto;
+}
+
 @for $i from 1 through 20 {
   .ml#{5 * $i} {
     margin-left: 5px * $i !important;
