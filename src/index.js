@@ -23,7 +23,7 @@ function creator(options) {
   setTimeout(() => {
     let file = '';
 
-    getKeys(options).forEach(prop => {
+    fE(getKeys(options), prop => {
       fE(options[prop].blocks, ({max = 100, min = 0, step = 5, type = 'px'}) => {
         fE(max / step, i => {
           let stepCount = i * step;
