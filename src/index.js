@@ -1,5 +1,5 @@
 function fE(trgt, cb) {
-  let isArr = isArr(trgt);
+  let isArr = isArray(trgt);
   let iterCount = isArr ? trgt.length : trgt;
 
   for (let i = 0, l = iterCount; l > i; i++) {
@@ -7,7 +7,7 @@ function fE(trgt, cb) {
   }
 }
 
-function isArr(trgt) {
+function isArray(trgt) {
   return !!trgt && Array === trgt.constructor;
 }
 
