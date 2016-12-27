@@ -1,10 +1,14 @@
-function fE(trgt, cb) {
+function fE(trgt, cb, cnxt) {
   let isArr = isArray(trgt);
-  let iterCount = isArr ? trgt.length : trgt;
+  let l = isArr ? trgt.length : +trgt;
 
-  for (let i = 0, l = iterCount; l > i; i++) {
-    cb.apply(null, isArr ? [trgt[i], i] : [i]);
+  if (!l) return [];
+
+  for (let i = 0; l > i; i++) {
+    cb.apply(cnxt, isArr ? [trgt[i], i] : [i]);
   }
+
+  return trgt;
 }
 
 function isArray(trgt) {
