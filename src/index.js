@@ -8,7 +8,7 @@ function fE(trgt, cb) {
 }
 
 function isArr(arr) {
-  return Object.prototype.toString.call(arr) === '[object Array]';
+  return !!arr && Array === arr.constructor;
 }
 
 function getKeys(trg) {
