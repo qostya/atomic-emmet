@@ -19,21 +19,6 @@ function getKeys(trgt) {
   return keys;
 }
 
-const cssPropsMap = {
-  width: {
-    prfx: 'w'
-  },
-  height: {
-    prfx: 'h'
-  },
-  margin: {
-    prfx: 'm'
-  },
-  padding: {
-    prfx: 'p'
-  }
-};
-
 function creator(options) {
   setTimeout(() => {
     let file = '';
@@ -42,7 +27,7 @@ function creator(options) {
       const propertyBlock = options[prop];
 
       fE(propertyBlock.blocks, ({max = 100, min = 0, step = 5, type = 'px', classNamePrefix = ''}) => {
-        let cnPrefix = (classNamePrefix || propertyBlock.classNamePrefix || '') + cssPropsMap[prop].prfx;
+        let cnPrefix = (classNamePrefix || propertyBlock.classNamePrefix || '') + prop[0]; // prop[0] === ["width" => "w", "margin" => "m"]
         let signPostfix = type === '%' ? 'p' : '';
 
         fE(max / step, i => {
