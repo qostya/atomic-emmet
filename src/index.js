@@ -7,14 +7,14 @@ function fE(trgt, cb) {
   }
 }
 
-function isArr(arr) {
-  return !!arr && Array === arr.constructor;
+function isArr(trgt) {
+  return !!trgt && Array === trgt.constructor;
 }
 
-function getKeys(trg) {
+function getKeys(trgt) {
   let keys = [];
 
-  for (let p in trg) if (trg.hasOwnProperty(p)) keys.push(p);
+  for (let p in trgt) if (trgt.hasOwnProperty(p)) keys.push(p);
 
   return keys;
 }
