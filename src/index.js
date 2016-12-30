@@ -24,49 +24,55 @@ function getKeys(trgt) {
 }
 
 function creator(options) {
-  setTimeout(() => {
-    let file = '';
+  let file = '';
 
-    fE(getKeys(options), prop => {
-      const propertyBlock = options[prop];
+  fE(getKeys(options), prop => {
+    const propertyBlock = options[prop];
 
-      fE(propertyBlock.blocks, ({max = 100, min = 0, step = 5, type = 'px', classNamePrefix = ''}) => {
-        let cnPrefix = (classNamePrefix || propertyBlock.classNamePrefix || '') + prop[0]; // prop[0] === ["width" => "w", "margin" => "m"]
-        let signPostfix = type === '%' ? 'p' : '';
+    fE(propertyBlock.blocks, ({max = 100, min = 0, step = 5, type = 'px', classNamePrefix = ''}) => {
+      let origPrefix = prop.split('-').reduce((p, c) => (p || '') + c[0], ''); // origPrefix === ["width" => "w", "margin" => "m", "padding-right" => "pr"]
+      let clNmPrefix = (classNamePrefix || propertyBlock.classNamePrefix || '') + origPrefix;
+      let signPostfix = type === '%' ? 'p' : '';
 
-        fE(max / step, i => {
-          let stepCount = i * step;
+      fE(max / step, i => {
+        let stepCount = i * step;
 
-          if (stepCount < min) {
-            return;
-          }
+        if (stepCount < min) {
+          return;
+        }
 
-          file += '.' + cnPrefix + Math.floor(stepCount) + signPostfix + ' {';
-          file += prop + ': ' + (stepCount) + type + ';';
-          file += '} ';
-        });
+        file += '.' + clNmPrefix + Math.floor(stepCount) + signPostfix + ' {';
+        file += prop + ': ' + (stepCount) + type + ';';
+        file += '} ';
       });
     });
+  });
 
-    console.log(file);
-  }, 0);
+  console.log(file);
+
+  return file;
 }
 
 creator({
   width: {
-    classNamePrefix: 'u-',
     blocks: [
       {
+        classNamePrefix: 'u-',
         max: 100,
-        step: 5,
-        classNamePrefix: 'u-'
+        step: 5
       },
       {
         max: 100,
         min: 1,
         step: 33.33,
-        type: '%',
-        classNamePrefix: 'u-'
+        type: '%'
+      }
+    ]
+  },
+  'padding-right': {
+    blocks: [
+      {
+        step: 5
       }
     ]
   }
