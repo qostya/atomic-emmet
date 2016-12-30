@@ -23,6 +23,28 @@ function getKeys(trgt) {
   return keys;
 }
 
+function rdc(arr, callback, currentValue) {
+  var array = Object(arr),
+    l = array.length >>> 0,
+    i = 0;
+
+  if (currentValue === undefined) {
+    while (index < l && !i in array) {
+      i++;
+    }
+
+    currentValue = array[index++];
+  }
+
+  for (; i < l; i++) {
+    if (i in array) {
+      currentValue = callback(currentValue, array[i], i, array);
+    }
+  }
+
+  return currentValue;
+}
+
 function creator(options) {
   let file = '';
 
@@ -30,7 +52,7 @@ function creator(options) {
     const propertyBlock = options[prop];
 
     fE(propertyBlock.blocks, ({max = 100, min = 0, step = 5, type = 'px', classNamePrefix = ''}) => {
-      let origPrefix = prop.split('-').reduce((p, c) => (p || '') + c[0], ''); // origPrefix === ["width" => "w", "margin" => "m", "padding-right" => "pr"]
+      let origPrefix = rdc(prop.split('-'), (p, c) => (p || '') + c[0], ''); // origPrefix === ["width" => "w", "margin" => "m", "padding-right" => "pr"]
       let clNmPrefix = (classNamePrefix || propertyBlock.classNamePrefix || '') + origPrefix;
       let signPostfix = type === '%' ? 'p' : '';
 
@@ -42,7 +64,7 @@ function creator(options) {
         }
 
         file += '.' + clNmPrefix + Math.floor(stepCount) + signPostfix + ' {';
-        file += prop + ': ' + (stepCount) + type + ';';
+        file += prop + ': ' + (stepCount ? (stepCount + type) : 0) + ' !important;';
         file += '} ';
       });
     });
