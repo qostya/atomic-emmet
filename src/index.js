@@ -29,11 +29,11 @@ function rdc(arr, callback, currentValue) {
     i = 0;
 
   if (currentValue === undefined) {
-    while (index < l && !i in array) {
+    while (i < l && !i in array) {
       i++;
     }
 
-    currentValue = array[index++];
+    currentValue = array[i++];
   }
 
   for (; i < l; i++) {
